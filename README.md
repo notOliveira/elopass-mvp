@@ -1,36 +1,58 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Mosaico Viagens — MVP
 
-## Getting Started
+Site institucional de portfólio de uma agência de viagens boutique.
 
-First, run the development server:
+Stack: Next.js 16 (App Router) · React 19 · TypeScript · Tailwind v4.
+
+## Rodando local
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+npm install
+npm run dev      # http://localhost:3000
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+```bash
+npm run build    # build de produção
+npm run start    # rodar build
+npm run lint     # ESLint
+```
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Estrutura
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```
+app/
+├── layout.tsx              # metadata, fontes (Geist + Fraunces), Nav, Footer
+├── page.tsx                # Home
+├── globals.css             # design tokens (@theme inline)
+├── sobre/page.tsx          # Sobre a agente
+├── cotacao/page.tsx        # Formulário WhatsApp
+├── not-found.tsx           # 404
+├── sitemap.ts              # /sitemap.xml
+├── robots.ts               # /robots.txt
+└── components/             # ver estrutura completa em docs/MVP-CONTEXT.md
+lib/
+├── data.ts                 # TODO o conteúdo placeholder
+├── whatsapp.ts             # buildWhatsAppLink + formatCotacaoMessage
+└── schema.ts               # Zod schema do form
+docs/
+└── MVP-CONTEXT.md          # contexto canônico do projeto
+```
 
-## Learn More
+## Conteúdo placeholder
 
-To learn more about Next.js, take a look at the following resources:
+Todo o conteúdo (nome da agência, nome da agente, WhatsApp, fotos, textos, depoimentos) está em **`lib/data.ts`**. Quando o conteúdo real chegar, edite só esse arquivo.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Customizando o design
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Tokens em `app/globals.css` dentro de `@theme inline`:
 
-## Deploy on Vercel
+- Cores: `background`, `foreground`, `muted`, `accent`, `accent-soft`, `border`
+- Fontes: `font-sans` (Geist), `font-serif` (Fraunces), `font-mono` (Geist Mono)
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Formulário de cotação
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Aciona `window.open('https://wa.me/<numero>?text=<mensagem>')`. Sem backend, sem email service, sem armazenamento.
+
+## Documentação completa
+
+Ler `docs/MVP-CONTEXT.md` para entender decisões, próximos passos e roadmap v2.
