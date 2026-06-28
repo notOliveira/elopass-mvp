@@ -17,7 +17,7 @@
 - **Typecheck:** `npx tsc --noEmit` passa limpo.
 - **Última sessão:** 28/06/2026 — ver seção 15 (Histórico de sessões) pra detalhes do que foi feito.
 
-**Próxima ação da próxima sessão:** deploy na Vercel (ver seção 14 "Como retomar / deploy").
+**Próxima ação da próxima sessão:** abrir `docs/PROXIMOS-PASSOS.md` (checklist enxuto do que falta) ou seção 14 (guia completo de deploy).
 
 ---
 
