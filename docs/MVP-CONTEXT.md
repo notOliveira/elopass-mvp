@@ -6,6 +6,21 @@
 
 ---
 
+## 0. Estado atual do projeto (28/06/2026)
+
+**Status: código completo, build OK, pendente deploy na Vercel.**
+
+- **Passos concluídos:** 0, 1, 2, 3, 4, 5.
+- **Passo pendente:** 6 (deploy Vercel + URL pública + mostrar pra colega).
+- **Build:** `npm run build` passa limpo. 6 rotas estáticas (`/`, `/sobre`, `/cotacao`, `/_not-found`, `/sitemap.xml`, `/robots.txt`).
+- **Lint:** `npm run lint` passa limpo.
+- **Typecheck:** `npx tsc --noEmit` passa limpo.
+- **Última sessão:** 28/06/2026 — ver seção 15 (Histórico de sessões) pra detalhes do que foi feito.
+
+**Próxima ação da próxima sessão:** deploy na Vercel (ver seção 14 "Como retomar / deploy").
+
+---
+
 ## 1. Objetivo
 
 Construir um **MVP de portfólio** para uma colega de trabalho que está começando uma agência de viagens. Ela organiza viagens sob medida para clientes.
@@ -324,15 +339,16 @@ Meu nome é [Nome] e gostaria de uma cotação.
 
 ## 10. Plano de execução — 5 dias úteis + buffer
 
-| Dia | Entrega |
-|-----|---------|
-| **Dom (hoje)** | Setup base: deps, `next.config.ts` (Unsplash), `globals.css` (tokens), `layout.tsx` (fontes + metadata), `nav`, `footer`, `lib/data.ts` |
-| **Seg** | Home completa (6 seções) + responsivo mobile |
-| **Ter** | Sobre + Cotação (form WhatsApp funcional end-to-end) |
-| **Qua** | Polish: 404, acessibilidade básica, animações sutis, QA mobile, smoke test |
-| **Qui** | GitHub + Vercel deploy + URL pública + checklist final |
-| **Sex** | Buffer / mostrar pra ela / tomar nota de feedback |
-| **Sáb** | Buffer / ajustes rápidos |
+| Dia | Entrega | Status |
+|-----|---------|--------|
+| **Dom (28/06)** | Setup base: deps, `next.config.ts` (Unsplash), `globals.css` (tokens), `layout.tsx` (fontes + metadata), `nav`, `footer`, `lib/data.ts` | ✅ feito (commit `2d2eba5`) |
+| **Dom (28/06)** | Home completa (6 seções) | ✅ feito (commit `45f6998`) |
+| **Dom (28/06)** | Sobre + Cotação (form WhatsApp funcional) | ✅ feito (commits `7ecd686`, `0729284`) |
+| **Dom (28/06)** | Polish: 404, sitemap, robots, cleanup | ✅ feito (commit `2292ba2`) |
+| **Seg (29/06)** | Deploy na Vercel + URL pública + mostrar pra colega | ⏳ **pendente — Passo 6** |
+| **Sex/Sáb** | Buffer / ajustes rápidos após feedback dela | ⏳ |
+
+**Observação:** na sessão 1 (28/06) o ritmo foi muito mais rápido que o previsto — Passos 1–5 foram fechados no mesmo dia. O cronograma de 5 dias está à frente do planejado.
 
 ---
 
@@ -354,19 +370,142 @@ Estes itens precisam ser trocados antes do site ir ao ar de verdade:
 
 ---
 
-## 12. Comando rápidos
+## 12. Comandos rápidos
 
 ```bash
 npm install              # instalar deps
 npm run dev              # dev server em http://localhost:3000
 npm run build            # build de produção
-npm run start            # rodar build de produção
+npm run start            # rodar build de produção (porta 3000)
 npm run lint             # ESLint
+npx tsc --noEmit         # typecheck sem build
 ```
+
+### Smoke test manual
+
+Com `npm run dev` rodando, abrir `http://localhost:3000` no navegador e clicar nas rotas:
+- `/` — 6 seções da home
+- `/sobre` — hero + bio + stats + diferenciais + CTA
+- `/cotacao` — form; tentar enviar vazio (deve mostrar erros), depois preencher e enviar (deve abrir WhatsApp em nova aba)
+- `/qualquer-coisa` — 404 elegante
 
 ---
 
-## 13. Roadmap v2 (se ela aprovar)
+## 13. Notas técnicas relevantes (descobertas durante implementação)
+
+Essas notas vieram de problemas reais que apareceram durante a sessão 1. A próxima sessão deve conhecê-las antes de mexer no código:
+
+### 13.1. lucide-react v1 removeu ícones de marca
+
+A versão 1.x do `lucide-react` (estamos na 1.21.0) **não exporta mais ícones de marca** (`Instagram`, `Facebook`, `Twitter`, etc.). A solução aplicada foi criar `components/icons.tsx` com SVGs inline para ícones de marca. Se ela adicionar mais redes sociais no futuro (TikTok, YouTube), continuar nesse padrão — adicionar SVG inline, não tentar importar do lucide.
+
+### 13.2. `Palmtree` virou `TreePalm` no lucide v1
+
+Nomes de ícones mudaram. Antes de usar um ícone novo do lucide, conferir com `grep "declare const <Nome>" node_modules/lucide-react/dist/lucide-react.d.ts`.
+
+### 13.3. Tailwind v4 — `@theme inline` funciona como esperado
+
+Tokens em `@theme inline { --color-x: ... }` viram classes Tailwind (`bg-x`, `text-x`, `border-x`). Os tokens de fonte (`--font-sans: var(--font-geist-sans)`) também funcionam e são aplicados via classes (`font-sans`, `font-serif`, `font-mono`).
+
+### 13.4. `useState` + Zod é suficiente pro form
+
+Sem `react-hook-form`. O `cotacaoSchema.safeParse()` + iteração sobre `result.error.issues` para popular `errors` por campo funciona bem e mantém zero deps extras. Validação inline + `aria-invalid` + `aria-describedby` já dá boa acessibilidade.
+
+### 13.5. Formato do número do WhatsApp
+
+`wa.me` exige formato `55` + DDD + número, sem espaços, sem `+`. Em `lib/data.ts`: `whatsappNumber: "5511999999999"`. Pra URL: `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`.
+
+### 13.6. `next/image` com Unsplash
+
+Funciona desde que `images.remotePatterns` esteja configurado em `next.config.ts` (já feito). Vantagem: zero peso no repo. Risco: se Unsplash cair, imagens quebram. Pra v2, hospedar localmente.
+
+### 13.7. `Intl.NumberFormat` para BRL
+
+```ts
+new Intl.NumberFormat("pt-BR", { style: "currency", currency: "BRL", maximumFractionDigits: 0 })
+```
+
+Sem dep extra, formato `R$ 8.900`. Usado em `components/home/destinations.tsx`.
+
+### 13.8. Metadata do Next 16 funciona igual ao 14
+
+`title` com `template: '%s | Site'` no root layout + `title: 'Página'` na page = "Página | Site". `metadataBase` precisa estar setado pra OG image absoluta funcionar.
+
+---
+
+## 14. Como retomar / deploy (próxima sessão)
+
+### Passo 6 — Deploy na Vercel
+
+**Pré-condições:**
+- Repo já está em git, branch `master`.
+- Precisa estar num GitHub remoto (se ainda não estiver): `git remote add origin <url>` e `git push -u origin master`.
+- Conta em [vercel.com](https://vercel.com) com login via GitHub.
+
+**Passos:**
+1. Em [vercel.com/new](https://vercel.com/new), "Import Project" → selecionar o repo.
+2. Framework preset: Next.js (auto-detectado).
+3. **Nenhuma env var** é necessária nesse MVP.
+4. Clicar Deploy. Build leva ~1 min.
+5. URL pública: `https://<projeto>-<hash>.vercel.app` (renomear o projeto pra URL limpa).
+6. Atualizar `lib/data.ts` → `siteConfig.url` com a URL real (e commitar).
+7. Atualizar `app/layout.tsx` → `metadataBase` (se ainda não usa `siteConfig.url`).
+8. Re-deploy (push ou "Redeploy" no painel da Vercel).
+
+**Mostrar pra colega:**
+- Mandar a URL pública.
+- Caminho crítico pra ela avaliar: Home → clicar "Planejar minha viagem" → Cotação → preencher form → ver WhatsApp abrir.
+- Pedir feedback sobre: clareza das informações, vibe visual, copy, paleta.
+
+### Pendências pós-feedback (ordem sugerida)
+
+1. Trocar placeholders por conteúdo real dela (uma linha por vez em `lib/data.ts`).
+2. Remover banner "Versão demonstrativa" do footer quando ela aprovar.
+3. Domínio próprio (se ela quiser comprar).
+4. Substituir fotos Unsplash por fotos reais dela (hospedar localmente).
+5. Política de privacidade (obrigatório pra capturar email em produção, LGPD).
+
+### Se quiser mudar algo no design
+
+- **Cores:** editar tokens em `app/globals.css` (`@theme inline`).
+- **Fontes:** trocar `Fraunces` / `Geist` por outras em `app/layout.tsx`.
+- **Estrutura de uma página:** cada página tem um arquivo em `components/<seção>/` e é montada em `app/<rota>/page.tsx`.
+
+---
+
+## 15. Histórico de sessões
+
+> Cada nova sessão que avançar o projeto, adicionar uma entrada curta aqui.
+
+### Sessão 1 — 2026-06-28 (✅ MVP de código concluído)
+
+**Duração:** ~3 horas (uma única sessão, todos os 5 passos).
+
+**O que foi feito:**
+
+| # | Entrega | Commit |
+|---|---------|--------|
+| 0 | Criado `docs/MVP-CONTEXT.md` com decisões, stack, design system, estrutura, roadmap v2. Atualizado `AGENTS.md` pra apontar pro arquivo. | `7bb249e` |
+| 1 | Fundação: deps (lucide-react, zod), `next.config.ts` (Unsplash), `globals.css` (tokens @theme), Fraunces no layout, metadata PT-BR, Nav sticky + Footer, UI primitives (Button, Input, Textarea, Select, cn), lib/data.ts (todo conteúdo), lib/whatsapp.ts, lib/schema.ts | `2d2eba5` |
+| 2 | Home: Hero, Services (6), Destinations (3 com preço BRL), Testimonials (3), AboutTeaser, CtaBanner | `45f6998` |
+| 3 | Sobre: AgentHero, AgentBio, Stats (12+/40+/500+), Differentials (4 pilares) | `7ecd686` |
+| 4 | Cotação: Form com 3 fieldsets + Zod + WhatsApp (wa.me com mensagem formatada), banner explicativo, banner de sucesso pós-submit | `0729284` |
+| 5 | Polish: 404, sitemap, robots, removidos SVGs default do Next, README reescrito | `2292ba2` |
+
+**Decisões/descobertas durante implementação:**
+
+- lucide-react v1.21.0 removeu ícones de marca. Solução: `components/icons.tsx` com SVG inline do Instagram.
+- `Palmtree` → `TreePalm` (mudança de nome).
+- `next/font/google` retorna CSS variable que liga ao `@theme inline` via `var(--font-fraunces)`.
+- Form WhatsApp ficou simples e robusto: `window.open('https://wa.me/<num>?text=<msg>', '_blank', 'noopener,noreferrer')`.
+
+**Build/lint/typecheck:** todos passando limpo.
+
+**Próxima sessão:** deploy na Vercel (ver seção 14).
+
+---
+
+## 16. Roadmap v2 (se ela aprovar)
 
 ### Curto prazo (2-4 semanas após aprovação)
 
@@ -426,12 +565,10 @@ npm run lint             # ESLint
 
 ---
 
-## 14. Histórico de sessões
-
-> Cada nova sessão que avançar o projeto, adicionar uma entrada curta aqui.
-
-### Sessão 1 — 2026-06-28 (inicial)
+### Sessão 0 — 2026-06-28 (planejamento)
 - Definição de escopo, stack, design system, estrutura.
 - Decisões travadas (D1-D8).
 - Criação deste arquivo + setup do projeto.
-- Próximo: executar Passo 1 do plano.
+- **Resultado:** plano pronto, nada implementado ainda.
+
+### Sessão 1 — 2026-06-28 (✅ MVP de código concluído)
