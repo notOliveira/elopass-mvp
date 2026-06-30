@@ -7,7 +7,7 @@ export const siteConfig = {
   whatsappDisplay: "+55 (11) 99999-9999",
   email: "contato@mosaicoviagens.com.br",
   instagram: "@mosaicoviagens",
-  url: "https://mosaicoviagens.vercel.app",
+  url: "https://elopass-mvp.vercel.app",
 } as const;
 
 export const agent = {
