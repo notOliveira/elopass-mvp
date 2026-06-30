@@ -24,7 +24,7 @@ export function Services() {
     <section className="py-24 lg:py-32">
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
         <div className="max-w-2xl">
-          <p className="text-xs uppercase tracking-[0.18em] text-accent font-medium">
+          <p className="font-display text-xs font-light uppercase tracking-[0.18em] text-accent">
             O que faço
           </p>
           <h2 className="mt-4 font-serif text-4xl md:text-5xl font-semibold tracking-tight text-foreground text-balance">
@@ -41,7 +41,7 @@ export function Services() {
             return (
               <article
                 key={service.id}
-                className="group relative overflow-hidden rounded-2xl bg-background border border-border hover:border-foreground/20 transition-colors"
+                className="group relative overflow-hidden rounded-md bg-background border border-border hover:border-foreground/20 transition-colors"
               >
                 <div className="relative aspect-[4/3] overflow-hidden bg-muted/10">
                   <Image

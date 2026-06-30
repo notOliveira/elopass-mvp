@@ -19,7 +19,7 @@ export function Hero() {
       />
       <div className="absolute inset-0 bg-gradient-to-b from-black/30 via-black/40 to-black/70" />
       <div className="relative z-10 mx-auto flex h-full max-w-7xl flex-col justify-end px-6 pb-16 lg:px-8 lg:pb-24">
-        <p className="text-xs uppercase tracking-[0.22em] text-white/80 font-medium">
+        <p className="font-display text-xs font-light uppercase tracking-[0.22em] text-white/80">
           {siteConfig.name}
         </p>
         <h1 className="mt-4 font-serif text-4xl sm:text-5xl md:text-7xl lg:text-8xl font-semibold tracking-tight text-white text-balance max-w-5xl">

@@ -6,9 +6,9 @@ export function CtaBanner() {
   return (
     <section className="py-24 lg:py-32">
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
-        <div className="relative overflow-hidden rounded-3xl bg-foreground text-background px-8 py-16 md:px-16 md:py-24">
+        <div className="relative overflow-hidden rounded-md bg-foreground text-background px-8 py-16 md:px-16 md:py-24">
           <div className="relative z-10 max-w-3xl">
-            <p className="text-xs uppercase tracking-[0.22em] text-accent-soft font-medium">
+            <p className="font-display text-xs font-light uppercase tracking-[0.22em] text-accent">
               Vamos?
             </p>
             <h2 className="mt-4 font-serif text-4xl md:text-6xl font-semibold tracking-tight text-balance">

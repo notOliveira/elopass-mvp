@@ -1,12 +1,12 @@
 export const siteConfig = {
-  name: "Mosaico Viagens",
+  name: "Elopass Viagens",
   tagline: "Viagens sob medida, do seu jeito",
   description:
     "Agência de viagens boutique. Roteiros personalizados, atendimento humano e curadoria cuidadosa para cada cliente.",
   whatsappNumber: "5511976159678",
   whatsappDisplay: "+55 (11) 97615-9678",
-  email: "contato@mosaicoviagens.com.br",
-  instagram: "@mosaicoviagens",
+  email: "contato@elopassviagens.com.br",
+  instagram: "@elopassviagens",
   url: "https://elopass-mvp.vercel.app",
 } as const;
 

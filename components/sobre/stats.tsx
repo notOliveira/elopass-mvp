@@ -2,7 +2,7 @@ import { stats } from "@/lib/data";
 
 export function Stats() {
   return (
-    <section className="py-16 lg:py-24 border-y border-border bg-accent-soft/15">
+    <section className="py-16 lg:py-24 border-y border-border bg-accent-soft">
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-4">
           {stats.map((stat, i) => (

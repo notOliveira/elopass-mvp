@@ -12,7 +12,7 @@ export default function CotacaoPage() {
   return (
     <div className="mx-auto max-w-3xl px-6 lg:px-8 py-20 lg:py-28">
       <div className="max-w-2xl">
-        <p className="text-xs uppercase tracking-[0.22em] text-accent font-medium">
+        <p className="font-display text-xs font-light uppercase tracking-[0.22em] text-accent">
           Cotação
         </p>
         <h1 className="mt-4 font-serif text-5xl md:text-6xl lg:text-7xl font-semibold tracking-tight text-foreground text-balance">
@@ -25,7 +25,7 @@ export default function CotacaoPage() {
         </p>
       </div>
 
-      <div className="mt-10 rounded-2xl border border-border bg-accent-soft/15 p-5 md:p-6 flex gap-4 items-start">
+      <div className="mt-10 rounded-md border border-border bg-accent-soft/30 p-5 md:p-6 flex gap-4 items-start">
         <span className="inline-flex shrink-0 items-center justify-center size-10 rounded-full bg-background border border-border">
           <MessageCircle
             className="size-5 text-accent"

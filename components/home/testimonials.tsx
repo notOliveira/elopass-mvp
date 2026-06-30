@@ -7,7 +7,7 @@ export function Testimonials() {
     <section className="py-24 lg:py-32">
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
         <div className="max-w-2xl">
-          <p className="text-xs uppercase tracking-[0.18em] text-accent font-medium">
+          <p className="font-display text-xs font-light uppercase tracking-[0.18em] text-accent">
             Depoimentos
           </p>
           <h2 className="mt-4 font-serif text-4xl md:text-5xl font-semibold tracking-tight text-foreground text-balance">
@@ -18,7 +18,7 @@ export function Testimonials() {
           {testimonials.map((t, i) => (
             <figure
               key={i}
-              className="flex flex-col rounded-2xl bg-background border border-border p-8"
+              className="flex flex-col rounded-md bg-background border border-border p-8"
             >
               <div
                 className="flex gap-0.5 text-accent"

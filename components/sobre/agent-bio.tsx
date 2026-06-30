@@ -4,7 +4,7 @@ export function AgentBio() {
   return (
     <section className="py-16 lg:py-24">
       <div className="mx-auto max-w-3xl px-6 lg:px-8">
-        <p className="text-xs uppercase tracking-[0.18em] text-accent font-medium">
+        <p className="font-display text-xs font-light uppercase tracking-[0.18em] text-accent">
           Minha história
         </p>
         <h2 className="mt-4 font-serif text-3xl md:text-4xl font-semibold tracking-tight text-foreground">

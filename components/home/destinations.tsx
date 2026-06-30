@@ -10,13 +10,13 @@ const priceFormatter = new Intl.NumberFormat("pt-BR", {
 
 export function Destinations() {
   return (
-    <section className="py-24 lg:py-32 bg-accent-soft/15">
+    <section className="py-24 lg:py-32 bg-accent-soft">
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
         <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-8">
           <div className="max-w-2xl">
-            <p className="text-xs uppercase tracking-[0.18em] text-accent font-medium">
-              Em destaque
-            </p>
+<p className="font-display text-xs font-light uppercase tracking-[0.18em] text-accent">
+            Em destaque
+          </p>
             <h2 className="mt-4 font-serif text-4xl md:text-5xl font-semibold tracking-tight text-foreground text-balance">
               Destinos pra inspirar.
             </h2>
@@ -30,7 +30,7 @@ export function Destinations() {
           {destinations.map((dest) => (
             <article
               key={dest.slug}
-              className="group flex flex-col overflow-hidden rounded-2xl bg-background border border-border hover:shadow-xl transition-shadow duration-300"
+              className="group flex flex-col overflow-hidden rounded-md bg-background border border-border hover:shadow-xl transition-shadow duration-300"
             >
               <div className="relative aspect-[4/5] overflow-hidden">
                 <Image

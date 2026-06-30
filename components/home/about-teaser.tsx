@@ -5,10 +5,10 @@ import { agent } from "@/lib/data";
 
 export function AboutTeaser() {
   return (
-    <section className="py-24 lg:py-32 bg-accent-soft/15">
+    <section className="py-24 lg:py-32 bg-accent-soft">
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-12 lg:gap-20 items-center">
-          <div className="relative aspect-[4/5] overflow-hidden rounded-2xl bg-muted/10 order-2 md:order-1">
+          <div className="relative aspect-[4/5] overflow-hidden rounded-md bg-muted/10 order-2 md:order-1">
             <Image
               src={agent.photo}
               alt={agent.photoAlt}
@@ -18,7 +18,7 @@ export function AboutTeaser() {
             />
           </div>
           <div className="order-1 md:order-2">
-            <p className="text-xs uppercase tracking-[0.18em] text-accent font-medium">
+            <p className="font-display text-xs font-light uppercase tracking-[0.18em] text-accent">
               Quem está por trás
             </p>
             <h2 className="mt-4 font-serif text-4xl md:text-5xl font-semibold tracking-tight text-foreground text-balance">
