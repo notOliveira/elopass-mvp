@@ -3,8 +3,8 @@ export const siteConfig = {
   tagline: "Viagens sob medida, do seu jeito",
   description:
     "Agência de viagens boutique. Roteiros personalizados, atendimento humano e curadoria cuidadosa para cada cliente.",
-  whatsappNumber: "5511976156878",
-  whatsappDisplay: "+55 (11) 97615-6878",
+  whatsappNumber: "5511976159678",
+  whatsappDisplay: "+55 (11) 97615-9678",
   email: "contato@mosaicoviagens.com.br",
   instagram: "@mosaicoviagens",
   url: "https://elopass-mvp.vercel.app",
