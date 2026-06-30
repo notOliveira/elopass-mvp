@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Cormorant_Garamond, Plus_Jakarta_Sans, Poppins } from "next/font/google";
 import { Nav } from "@/components/nav";
 import { Footer } from "@/components/footer";
+import { FloatingWhatsApp } from "@/components/floating-whatsapp";
 import { siteConfig } from "@/lib/data";
 import "./globals.css";
 
@@ -57,6 +58,7 @@ export default function RootLayout({
       <body className="min-h-full flex flex-col bg-background text-foreground font-sans">
         <Nav />
         <main className="flex-1">{children}</main>
+        <FloatingWhatsApp />
         <Footer />
       </body>
     </html>
