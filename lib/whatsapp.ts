@@ -1,4 +1,4 @@
-import { siteConfig } from "./data";
+import { agent, siteConfig } from "./data";
 
 export function buildWhatsAppLink(message: string, phone: string = siteConfig.whatsappNumber): string {
   const encoded = encodeURIComponent(message);
@@ -17,7 +17,7 @@ export function formatCotacaoMessage(data: {
   notes?: string;
 }): string {
   const lines: string[] = [
-    `Olá, ${siteConfig.name.split(" ")[0]}!`,
+    `Olá, ${agent.name.split(" ")[0]}!`,
     "",
     `Meu nome é ${data.name} e gostaria de uma cotação.`,
     "",

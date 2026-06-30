@@ -3,19 +3,18 @@ export const siteConfig = {
   tagline: "Viagens sob medida, do seu jeito",
   description:
     "Agência de viagens boutique. Roteiros personalizados, atendimento humano e curadoria cuidadosa para cada cliente.",
-  whatsappNumber: "5511999999999",
-  whatsappDisplay: "+55 (11) 99999-9999",
+  whatsappNumber: "5511976156878",
+  whatsappDisplay: "+55 (11) 97615-6878",
   email: "contato@mosaicoviagens.com.br",
   instagram: "@mosaicoviagens",
   url: "https://elopass-mvp.vercel.app",
 } as const;
 
 export const agent = {
-  name: "Marina Souto",
+  name: "Paula Moreno",
   role: "Agente de viagens",
-  photo:
-    "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=900&q=80",
-  photoAlt: "Marina Souto, agente de viagens",
+  photo: "/agent.jpg",
+  photoAlt: "Foto da agente",
   bio: [
     "Há mais de uma década ajudando pessoas a transformar o sonho de viajar em realidade. Acredito que cada viagem é única — como quem a faz.",
     "Trabalho com curadoria personalizada: ouço o que você imagina, pesquiso as melhores opções e monto um roteiro que cabe no seu jeito, no seu tempo e no seu bolso.",
@@ -121,7 +120,7 @@ export const testimonials = [
     name: "Ana Paula M.",
     location: "São Paulo, SP",
     rating: 5,
-    text: "A Marina montou a lua de mel dos nossos sonhos. Cada detalhe foi pensado com carinho. Voltamos completamente apaixonados — pelo lugar e pela experiência.",
+    text: "A Paula montou a lua de mel dos nossos sonhos. Cada detalhe foi pensado com carinho. Voltamos completamente apaixonados — pelo lugar e pela experiência.",
     avatar:
       "https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=200&q=80",
   },
